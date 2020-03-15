@@ -1,0 +1,27 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+        <p></p>
+    <h6>Est-ce que ce commentaire contient des termes de violence? Si oui, veuillez les mentionner</h6> </br>
+    <h4 align="center">{{comm}}</h4> </br> </br>
+    <form align="center" method='POST'>
+        {% csrf_token %}
+
+        {{aform.as_p}}
+        </br>
+        <div class="form-group">
+            <button class="btn btn-outline-success" type="submit" style="float: center;" >Suivant</button>
+
+        </div>
+
+    </form>
+    <a href="{% url 'blog-home'%}" style="float:center;" ><button  class="btn btn-outline-danger" >Quitter</button></a>
+
+    </div>
+<script>
+    document.getElementById('id_reponse').onchange = function () {
+  document.getElementById("id_terms").disabled = (this.value === '0');
+}
+</script>
+{% endblock content %}
